@@ -86,7 +86,21 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+  {
+    title: 'This is the title of the first article I wrote',
+    date: "This is today's date",
+    firstParagraph: 'This is the content of my first paragraph. I do not know what to put here so I will keep typing words using my keyboard.',
+    secondParagraph: 'This is my second paragraph. I am getting tired of typing random words but I will continue so I can have at least some content.',
+    thirdParagraph: 'This is my third paragraph. I am done typing useless information so I will stop now. Have a good day, goodbye.'
+  },
+  {
+    title: 'Bee Movie Script (partial)',
+    date: 'Sept 8th, 2020',
+    firstParagraph: 'According to all known laws of aviation, there is no way that a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway. Because bees don’t care what humans think is impossible.” SEQ. 75 - “INTRO TO BARRY” INT. BENSON HOUSE - DAY ANGLE ON: Sneakers on the ground. ',
+    secondParagraph: 'Camera PANS UP to reveal BARRY BENSON’S BEDROOM ANGLE ON: Barry’s hand flipping through different sweaters in his closet. BARRY Yellow black, yellow black, yellow black, yellow black, yellow black, yellow black...oohh, black and yellow... ANGLE ON: Barry wearing the sweater he picked, looking in the mirror. BARRY (CONT’D) Yeah, let’s shake it up a little. He picks the black and yellow one. He then goes to the sink, takes the top off a CONTAINER OF HONEY, and puts some honey into his hair. He squirts some in his mouth and gargles.',
+    thirdParagraph: 'Then he takes the lid off the bottle, and rolls some on like deodorant. CUT TO: INT. BENSON HOUSE KITCHEN - CONTINUOUS Barry’s mother, JANET BENSON, yells up at Barry. JANET BENSON Barry, breakfast is ready! CUT TO: "Bee Movie" - JS REVISIONS 8/13/07 1. INT. BARRY’S ROOM - CONTINUOUS BARRY Coming! SFX: Phone RINGING. Barry’s antennae vibrate as they RING like a phone. Barry’s hands are wet. He looks around for a towel. '
+  },
 ];
 
 /*
@@ -114,3 +128,42 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+function articleMaker(obj) {
+  const article = document.createElement('div')
+  const title = document.createElement('h2')
+  const date = document.createElement('p')
+  const par1 = document.createElement('p')
+  const par2 = document.createElement('p')
+  const par3 = document.createElement('p')
+  const expand = document.createElement('span')
+
+  article.appendChild(title)
+  article.appendChild(date)
+  article.appendChild(par1)
+  article.appendChild(par2)
+  article.appendChild(par3)
+  article.appendChild(expand)
+
+  article.classList.add('article')
+  date.classList.add('date')
+  expand.classList.add('expandButton')
+
+  title.textContent = obj.title
+  date.textContent = obj.date
+  par1.textContent = obj.firstParagraph
+  par2.textContent = obj.secondParagraph
+  par3.textContent = obj.thirdParagraph
+  expand.textContent = '+'
+  
+  expand.addEventListener('click', () => {
+    article.classList.toggle('article-open')
+  })
+  return article
+}
+console.log(articleMaker(data[0]))
+
+const articles = document.querySelector('.articles')
+data.forEach(article => {
+  articles.appendChild(articleMaker(article))
+})
