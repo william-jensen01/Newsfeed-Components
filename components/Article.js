@@ -154,11 +154,12 @@ function articleMaker(obj) {
   par1.textContent = obj.firstParagraph
   par2.textContent = obj.secondParagraph
   par3.textContent = obj.thirdParagraph
-  expand.textContent = '+'
+  expand.textContent = 'Click to expand'
   
   expand.addEventListener('click', () => {
     article.classList.toggle('article-open')
   })
+
   return article
 }
 console.log(articleMaker(data[0]))
